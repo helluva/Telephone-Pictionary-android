@@ -41,7 +41,7 @@ public class GameSession {
     }
 
     public String firebaseSessionKey() {
-        return "session: " + this.name;
+        return this.name;
     }
 
 }

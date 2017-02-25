@@ -92,6 +92,17 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        Button joinButton = (Button) this.findViewById(R.id.join_game_button);
+        joinButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent gamelist = new Intent(MainActivity.this, GamelistActivity.class);
+                MainActivity.this.startActivity(gamelist);
+            }
+
+        });
+
         Button textViewButton = (Button) this.findViewById(R.id.text_description_button);
         textViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
 
                     final DatabaseReference newSession = firebase.getReference(session.firebaseSessionKey());
                     newSession.setValue(session);
-
                 }
 
             }

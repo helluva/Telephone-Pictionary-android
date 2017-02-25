@@ -36,13 +36,16 @@ public class AlertHelper {
             public void onClick(DialogInterface dialog, int which) {
                 String response = editText.getText().toString();
                 completion.receiveString(response);
+                dialog.dismiss();
             }
         });
 
         alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                editText.clearFocus();
+                dialog.dismiss();
+
             }
         });
 

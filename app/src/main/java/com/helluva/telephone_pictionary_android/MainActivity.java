@@ -92,46 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void hostGame(final String hostName, final String gameName) {
-
-        //get current list of games
-        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference allSessions = firebase.getReference(GameSession.FB_SESSIONS_KEY);
-
-        allSessions.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<String>> type = new GenericTypeIndicator<ArrayList<String>>() { };
-                ArrayList<String> sessions = dataSnapshot.getValue(type);
-                if (sessions == null) {
-                    sessions = new ArrayList<>();
-                }
-
-                if (sessions.contains(gameName)) {
-                    //error?
-                } else {
-                    sessions.add(gameName);
-                    allSessions.setValue(sessions);
-
-                    Player host = new Player(hostName);
-                    GameSession session = new GameSession(gameName, host);
-
-                    final DatabaseReference newSession = firebase.getReference(session.firebaseSessionKey());
-                    newSession.setValue(session);
-
-                    Intent playerlist = new Intent(MainActivity.this, PlayerlistActivity.class);
-                    playerlist.putExtra("gameSession", session);
-                    MainActivity.this.startActivity(playerlist);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) { }
-        });
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

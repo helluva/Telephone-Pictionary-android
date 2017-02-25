@@ -149,6 +149,10 @@ public class MainActivity extends AppCompatActivity {
 
                     final DatabaseReference newSession = firebase.getReference(session.firebaseSessionKey());
                     newSession.setValue(session);
+
+                    Intent playerlist = new Intent(MainActivity.this, PlayerlistActivity.class);
+                    playerlist.putExtra("gameSession", session);
+                    MainActivity.this.startActivity(playerlist);
                 }
 
             }

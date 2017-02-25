@@ -1,5 +1,9 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,13 +11,13 @@ import java.util.List;
  * Created by cal on 2/25/17.
  */
 
-public class GameSession {
+public class GameSession implements Serializable {
 
     //important Firebase keys
     static String FB_SESSIONS_KEY = "ActiveSessions";
 
     //SessionState
-    public enum SessionState {
+    public enum SessionState implements Serializable {
         WaitingForPlayers, GameInProgress;
     }
 

@@ -113,6 +113,11 @@ public class GamelistActivity extends AppCompatActivity {
                 session.players.add(newPlayer);
 
                 sessionRef.setValue(session);
+
+                //view playerlist
+                Intent playerlist = new Intent(GamelistActivity.this, PlayerlistActivity.class);
+                playerlist.putExtra("gameSession", session);
+                GamelistActivity.this.startActivity(playerlist);
             }
 
             @Override

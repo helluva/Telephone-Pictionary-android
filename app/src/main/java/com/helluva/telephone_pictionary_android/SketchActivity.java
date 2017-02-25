@@ -9,18 +9,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.agsw.FabricView.FabricView;
-=======
+//=======
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
 public class SketchActivity extends AppCompatActivity {
 
@@ -35,29 +35,6 @@ public class SketchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent i = getIntent();
-<<<<<<< Updated upstream
-
-/*
-        Button redButton = (Button) this.findViewById(R.id.red_button);
-        redButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
-        redButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                FabricView canvas = (FabricView) findViewById(R.id.faricView);
-                canvas.setColor(Color.RED);
-            }
-
-        });
-*/
-        Spinner spinner = (Spinner) findViewById(R.id.color_spinner);
-        //spinner.setOnItemSelectedListener(this);
-
-        //for the new spinner
-        ArrayAdapter<Colors> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Colors.values());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colorSpinner.setAdapter(adapter);
-=======
         String description = getIntent().getStringExtra("text_description");
 
         TextView textDescription = (TextView) this.findViewById(R.id.description_text_view);
@@ -73,8 +50,27 @@ public class SketchActivity extends AppCompatActivity {
                 SketchActivity.this.startActivity(i);
             }
         });
+/*
+        Button redButton = (Button) this.findViewById(R.id.red_button);
+        redButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+        redButton.setOnClickListener(new View.OnClickListener() {
 
->>>>>>> Stashed changes
+            @Override
+            public void onClick(View v) {
+                FabricView canvas = (FabricView) findViewById(R.id.faricView);
+                canvas.setColor(Color.RED);
+            }
+
+        });
+*/
+//        Spinner spinner = (Spinner) findViewById(R.id.color_spinner);
+        //spinner.setOnItemSelectedListener(this);
+
+        //for the new spinner
+        ArrayAdapter<Colors> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Colors.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        colorSpinner.setAdapter(adapter);
+
     }
 
     @Override

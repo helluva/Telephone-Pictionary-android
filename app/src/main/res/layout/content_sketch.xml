@@ -10,8 +10,6 @@
     <!--tools:context="com.helluva.telephone_pictionary_android.MainActivity"-->
     <!--tools:showIn="@layout/activity_sketch">-->
 
-
-<<<<<<< Updated upstream
     <com.agsw.FabricView.FabricView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,19 +24,7 @@
         <!--android:layout_height="38dp"-->
         <!--android:layout_gravity="bottom|right"-->
         <!--android:id="@+id/red_button" />-->
-=======
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:id="@+id/colorSpinner"
-        android:layout_marginStart="14dp"
-        android:layout_gravity="bottom|left"
-        android:spinnerMode="dropdown"
-        android:drawSelectorOnTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
->>>>>>> Stashed changes
+
 
     <TextView
         android:text="TextView"

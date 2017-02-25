@@ -1,13 +1,19 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,43 +25,48 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //set up the activity
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.content_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final Activity activity = this;
+
+        //when Host Button is clicked, request session name
+        Button hostButton = (Button) this.findViewById(R.id.host_game_button);
+        hostButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(final View view) {
+            public void onClick(View v) {
 
-                System.out.println("FAB pressed");
+                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activity);
+                alertBuilder.setTitle("Game Name");
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference reference = database.getReference("test2");
+                final EditText editText = new EditText(activity);
+                editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                alertBuilder.setView(editText);
 
-                Player owner = new Player("Cal");
-                GameSession session = new GameSession("DerbyHacks5", owner);
-
-                reference.setValue(session);
-
-                reference.addValueEventListener(new ValueEventListener() {
+                alertBuilder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        GameSession value = dataSnapshot.getValue(GameSession.class);
-                        System.out.println(value);
-                        Snackbar.make(view, value.name, Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        return;
+                    public void onClick(DialogInterface dialog, int which) {
+                        String sessionName = editText.getText().toString();
+                        System.out.println(sessionName);
                     }
                 });
 
+                alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                alertBuilder.show();
 
             }
+
         });
     }
 
@@ -80,4 +91,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -31,7 +31,7 @@ public class GamelistFragment extends ListFragment implements AdapterView.OnItem
         ArrayList<String> list = new ArrayList<>();
 
         GamelistActivity activity = (GamelistActivity) this.getActivity();
-        this.adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, activity.content);
+        this.adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, activity.displayContent);
         this.getListView().setAdapter(this.adapter);
         this.adapter.setNotifyOnChange(true);
 

@@ -23,7 +23,8 @@ import java.util.ArrayList;
 
 public class GamelistActivity extends AppCompatActivity {
 
-    ArrayList<String> content = new ArrayList<>();
+    ArrayList<String> displayContent = new ArrayList<>();
+    ArrayList<String> gamesAndIds = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +35,40 @@ public class GamelistActivity extends AppCompatActivity {
 
         ((ApplicationState)getApplicationContext()).makeRequest("requestListOfGames", new ApplicationState.NodeCallback() {
             @Override
-            public void receivedString(String message) {
+            public void receivedString(final String message) {
 
-                String[] games = message.split(";");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
 
-                content.removeAll(content);
-                for (String game : games) {
-                    content.add(game);
-                }
+                        String[] games = message.split(";");
 
-                GamelistFragment fragment = (GamelistFragment) GamelistActivity.this.getFragmentManager().findFragmentById(R.id.gamelist_fragment);
-                if (fragment != null) {
-                    fragment.adapter.notifyDataSetChanged();
-                }
+                        displayContent.removeAll(displayContent);
+                        gamesAndIds.removeAll(gamesAndIds);
+                        for (String gameInfo : games) {
+                            gamesAndIds.add(gameInfo);
+
+                            String diplayName = gameInfo.split(",")[1];
+                            displayContent.add(diplayName);
+                        }
+
+                        GamelistFragment fragment = (GamelistFragment) GamelistActivity.this.getFragmentManager().findFragmentById(R.id.gamelist_fragment);
+                        if (fragment != null) {
+                            fragment.adapter.notifyDataSetChanged();
+                        }
+
+                    }
+                });
+
+
             }
         });
     }
 
     public void confirmJoinSession(int index) {
-        final String sessionName = content.get(index);
+        final String gameInfo = gamesAndIds.get(index);
+        final String gameId = gameInfo.split(",")[0];
+        final String sessionName = gameInfo.split(",")[1];
 
         final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setTitle("Join " + sessionName + "?");
@@ -74,8 +90,13 @@ public class GamelistActivity extends AppCompatActivity {
                 new AlertHelper(GamelistActivity.this, "Your Name", "Join").displayWithCompletion(new AlertHelper.AlertCompletion() {
 
                     @Override
-                    public void receiveString(String playerName) {
-                        joinSession(sessionName, playerName);
+                    public void receiveString(final String playerName) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                joinSession(gameId, playerName);
+                            }
+                        });
                     }
 
                 });

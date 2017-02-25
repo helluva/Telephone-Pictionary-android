@@ -30,22 +30,31 @@ public class PlayerlistActivity extends AppCompatActivity {
 
         ((ApplicationState)getApplicationContext()).registerListenerForNodeMethod("playersInLobby", "playerlistListener", new ApplicationState.NodeCallback() {
             @Override
-            public void receivedString(String message) {
+            public void receivedString(final String message) {
 
-                String[] players = message.split(",");
-                content.removeAll(content);
-                for (String playerName : players) {
-                    content.add(playerName);
-                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] players = message.split(",");
+                        content.removeAll(content);
+                        for (String playerName : players) {
+                            content.add(playerName);
+                        }
 
-                PlayerlistFragment fragment = (PlayerlistFragment) PlayerlistActivity.this.getFragmentManager().findFragmentById(R.id.playerlist_fragment);
-                if (fragment == null) {
-                    ((ApplicationState)getApplicationContext()).unregisterListenerNamed("playerlistListener");
-                } else {
-                    fragment.adapter.notifyDataSetChanged();
-                }
+                        PlayerlistFragment fragment = (PlayerlistFragment) PlayerlistActivity.this.getFragmentManager().findFragmentById(R.id.playerlist_fragment);
+                        if (fragment == null) {
+                            ((ApplicationState)getApplicationContext()).unregisterListenerNamed("playerlistListener");
+                        } else {
+                            fragment.adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+
+
             }
         });
+
+        ((ApplicationState)getApplicationContext()).sendMessage("requestRebroadcast:playersInLobby");
 
     }
 

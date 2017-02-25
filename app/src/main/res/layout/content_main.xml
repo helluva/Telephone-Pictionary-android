@@ -34,15 +34,6 @@
         android:textStyle="bold" />
 
     <Button
-        android:text="Text Description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_description_button"
-        android:layout_above="@+id/sketch_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="31dp" />
-
-    <Button
         android:text="Sketch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,4 +41,13 @@
         android:id="@+id/sketch_button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Text Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_description_button"
+        android:layout_below="@+id/join_game_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp" />
 </RelativeLayout>

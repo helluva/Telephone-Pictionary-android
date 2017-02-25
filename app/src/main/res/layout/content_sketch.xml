@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:id="@+id/colorSpinner"
+        android:id="@+id/color_spinner"
         android:layout_marginStart="14dp"
         android:layout_gravity="bottom|left"
         android:spinnerMode="dropdown"

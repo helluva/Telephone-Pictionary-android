@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.content.Intent;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -90,6 +91,25 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        Button textViewButton = (Button) this.findViewById(R.id.text_description_button);
+        textViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, TextDescriptionActivity.class);
+                MainActivity.this.startActivity(i);
+            }
+        });
+
+        Button sketchButton = (Button) this.findViewById(R.id.sketch_button);
+        sketchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, SketchActivity.class);
+                MainActivity.this.startActivity(i);
+            }
+        });
+
     }
 
     public void hostGame(final String hostName, final String gameName) {

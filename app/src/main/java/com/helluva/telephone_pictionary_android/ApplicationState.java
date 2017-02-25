@@ -2,6 +2,8 @@ package com.helluva.telephone_pictionary_android;
 
 import android.app.Application;
 
+import org.w3c.dom.Node;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
@@ -19,17 +21,23 @@ import java.util.HashMap;
 public class ApplicationState extends Application {
 
     OutputStream outputStream;
+    static boolean hasSpunUpSocket = false;
+
     HashMap<String, NodeCallback> callbacks = new HashMap<>();
+    HashMap<String, HashMap<String, NodeCallback>> listeners = new HashMap<>();
 
 
     public void spinUpSocket() {
+
+        if (ApplicationState.hasSpunUpSocket) return;
+        ApplicationState.hasSpunUpSocket = true;
+
         Thread thread = new Thread(new Runnable() {
 
             @Override
             public void run() {
                 try {
                     Socket nodeSocket = new Socket("172.16.100.122", 1337);
-
 
                     System.out.println("Ready!");
                     ApplicationState.this.outputStream = nodeSocket.getOutputStream();
@@ -40,18 +48,28 @@ public class ApplicationState extends Application {
 
                         System.out.println("rec " + receivedLine);
 
-                        String[] components = receivedLine.split(":");
+                        String[] components = receivedLine.split("/");
                         if (components.length == 2) {
-                            String id = components[0];
+                            String idOrMethodName = components[0];
                             String message = components[1];
 
-                            System.out.println(id);
-                            System.out.println(callbacks.keySet());
+                            NodeCallback responseHandler = callbacks.get(idOrMethodName);
+                            if (responseHandler != null) {
+                                callbacks.remove(idOrMethodName);
+                                responseHandler.receivedString(message);
+                            }
 
-                            NodeCallback callback = callbacks.get(id);
-                            if (callback != null) {
-                                callbacks.remove(id);
-                                callback.receivedString(message);
+                            else { //if there was no request matching the ID, check if there are listeners for the method
+                                HashMap<String, NodeCallback> listenersForMethod = listeners.get(idOrMethodName);
+                                if (listenersForMethod != null) {
+                                    for (NodeCallback listener : listenersForMethod.values()) {
+                                        listener.receivedString(message);
+                                    }
+                                }
+
+                                else {
+                                    System.out.println("Unhandled message.");
+                                }
                             }
                         }
 
@@ -66,26 +84,69 @@ public class ApplicationState extends Application {
         thread.start();
     }
 
-    public boolean sendMessage(String message, NodeCallback callback) {
 
-        if (outputStream == null) { return false; }
+    //MARK: - Requests
+
+    /**
+     * Sends a message to the node server
+     * @param message The string message to send
+     * @return The timestamp/id of the message
+     */
+    public String sendMessage(String message) {
+        if (outputStream == null) { return null; }
 
         long time = new java.util.Date().getTime();
         String messageId = "" + time;
-        String messageWithId = messageId + ":" + message;
+        String messageWithId = messageId + "/" + message;
 
         System.out.println("Send message: " + messageWithId);
-        this.callbacks.put(messageId, callback);
 
         try {
             outputStream.write(messageWithId.getBytes("UTF8"));
-            return true;
+            return messageId;
         } catch(IOException e) {
             e.printStackTrace();
-            return false;
+            return null;
+        }
+    }
+
+    /**
+     * Sends a message to the node server
+     * @param message The string message to send
+     * @param callback a handler that will be called if/when the server response to the request
+     */
+    public void makeRequest(String message, NodeCallback callback) {
+        String messageId = sendMessage(message);
+        if (messageId == null) { return; }
+
+        this.callbacks.put(messageId, callback);
+    }
+
+
+    //MARK: - Listeners
+
+    public void registerListenerForNodeMethod(String methodName, String listenerName, NodeCallback callback) {
+        HashMap<String, NodeCallback> listenersForMethod = this.listeners.get(methodName);
+        if (listenersForMethod == null) {
+            listenersForMethod = new HashMap<>();
         }
 
+        listenersForMethod.put(listenerName, callback);
+        this.listeners.put(methodName, listenersForMethod);
     }
+
+    public void unregisterAllListenersForNodeMethod(String methodName) {
+        this.listeners.remove(methodName);
+    }
+
+    public void unregisterListenerNamed(String listenerName) {
+        for (HashMap<String, NodeCallback> listenersForMethod : listeners.values()) {
+            listenersForMethod.remove(listenerName);
+        }
+    }
+
+
+    //MARK: - Callback
 
     public interface NodeCallback {
         public void receivedString(String message);

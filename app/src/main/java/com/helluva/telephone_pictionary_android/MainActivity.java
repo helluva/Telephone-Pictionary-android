@@ -56,17 +56,8 @@ public class MainActivity extends AppCompatActivity {
         hostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ((ApplicationState) getApplicationContext()).sendMessage("host new game", new ApplicationState.NodeCallback() {
-                    @Override
-                    public void receivedString(String message) {
-                        System.out.println("CALLBACK!!");
-                        System.out.println(message);
-                    }
-                });
-
-                //Intent i = new Intent(MainActivity.this, HostGameActivity.class);
-                //MainActivity.this.startActivity(i);
+                Intent i = new Intent(MainActivity.this, HostGameActivity.class);
+                MainActivity.this.startActivity(i);
             }
         });
 

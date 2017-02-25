@@ -71,43 +71,11 @@ public class HostGameActivity extends AppCompatActivity {
 
     public void hostGame(final String hostName, final String gameName) {
 
-        //get current list of games
-        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference allSessions = firebase.getReference(GameSession.FB_SESSIONS_KEY);
+        String newGameMessage = "hostGame:" + hostName + "," + gameName;
+        ((ApplicationState)getApplicationContext()).sendMessage(newGameMessage);
 
-        allSessions.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<String>> type = new GenericTypeIndicator<ArrayList<String>>() { };
-                ArrayList<String> sessions = dataSnapshot.getValue(type);
-                if (sessions == null) {
-                    sessions = new ArrayList<>();
-                }
-
-                if (sessions.contains(gameName)) {
-                    //error?
-                } else {
-                    sessions.add(gameName);
-                    allSessions.setValue(sessions);
-
-                    Player host = new Player(hostName);
-                    GameSession session = new GameSession(gameName, host);
-
-                    final DatabaseReference newSession = firebase.getReference(session.firebaseSessionKey());
-                    newSession.setValue(session);
-
-                    //view playerlist
-                    Intent playerlist = new Intent(HostGameActivity.this, PlayerlistActivity.class);
-                    playerlist.putExtra("gameSession", session);
-                    HostGameActivity.this.startActivity(playerlist);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) { }
-        });
+        Intent intent = new Intent(HostGameActivity.this, PlayerlistActivity.class);
+        this.startActivity(intent);
 
     }
 

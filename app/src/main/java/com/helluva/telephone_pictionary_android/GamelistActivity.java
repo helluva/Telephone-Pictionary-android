@@ -114,6 +114,7 @@ public class GamelistActivity extends AppCompatActivity {
         ((ApplicationState)getApplicationContext()).sendMessage(joinGameMessage);
 
         Intent playerlistIntent = new Intent(this, PlayerlistActivity.class);
+        playerlistIntent.putExtra("playerIsHost", false);
         this.startActivity(playerlistIntent);
     }
 

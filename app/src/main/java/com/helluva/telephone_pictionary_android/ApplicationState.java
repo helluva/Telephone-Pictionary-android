@@ -1,6 +1,7 @@
 package com.helluva.telephone_pictionary_android;
 
 import android.app.Application;
+import android.os.StrictMode;
 
 import org.w3c.dom.Node;
 
@@ -32,6 +33,11 @@ public class ApplicationState extends Application {
         if (ApplicationState.hasSpunUpSocket) return;
         ApplicationState.hasSpunUpSocket = true;
 
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -49,31 +55,33 @@ public class ApplicationState extends Application {
                         System.out.println("rec " + receivedLine);
 
                         String[] components = receivedLine.split("/");
-                        if (components.length == 2) {
-                            String idOrMethodName = components[0];
-                            String message = components[1];
+                        String idOrMethodName = components[0];
 
-                            NodeCallback responseHandler = callbacks.get(idOrMethodName);
-                            if (responseHandler != null) {
-                                callbacks.remove(idOrMethodName);
-                                responseHandler.receivedString(message);
-                            }
-
-                            else { //if there was no request matching the ID, check if there are listeners for the method
-                                HashMap<String, NodeCallback> listenersForMethod = listeners.get(idOrMethodName);
-                                if (listenersForMethod != null) {
-                                    for (NodeCallback listener : listenersForMethod.values()) {
-                                        listener.receivedString(message);
-                                    }
-                                }
-
-                                else {
-                                    System.out.println("Unhandled message.");
-                                }
-                            }
+                        String message = "";
+                        if (components.length > 1) {
+                            message = components[1];
                         }
 
+                        NodeCallback responseHandler = callbacks.get(idOrMethodName);
+                        if (responseHandler != null) {
+                            callbacks.remove(idOrMethodName);
+                            responseHandler.receivedString(message);
+                        }
+
+                        else { //if there was no request matching the ID, check if there are listeners for the method
+                            HashMap<String, NodeCallback> listenersForMethod = listeners.get(idOrMethodName);
+                            if (listenersForMethod != null) {
+                                for (NodeCallback listener : listenersForMethod.values()) {
+                                    listener.receivedString(message);
+                                }
+                            }
+
+                            else {
+                                System.out.println("Unhandled message.");
+                            }
+                        }
                     }
+
 
                 } catch (IOException e) {
                     e.printStackTrace();

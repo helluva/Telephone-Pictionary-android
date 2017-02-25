@@ -74,6 +74,7 @@ public class HostGameActivity extends AppCompatActivity {
         ((ApplicationState)getApplicationContext()).sendMessage(newGameMessage);
 
         Intent intent = new Intent(HostGameActivity.this, PlayerlistActivity.class);
+        intent.putExtra("playerIsHost", true);
         this.startActivity(intent);
 
     }

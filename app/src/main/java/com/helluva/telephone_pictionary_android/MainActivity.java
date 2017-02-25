@@ -64,32 +64,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final Activity activity = this;
-
-        //when Host Button is clicked, request session name
         Button hostButton = (Button) this.findViewById(R.id.host_game_button);
         hostButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
-            public void onClick(View v) {
-
-                new AlertHelper(activity, "Your Name", "Next").displayWithCompletion(new AlertHelper.AlertCompletion() {
-
-                    @Override
-                    public void receiveString(final String playerName) {
-                        new AlertHelper(activity, "Game Name", "Create").displayWithCompletion(new AlertHelper.AlertCompletion() {
-
-                            @Override
-                            public void receiveString(String gameName) {
-                                hostGame(playerName, gameName);
-                            }
-
-                        });
-                    }
-
-                });
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, HostGameActivity.class);
+                MainActivity.this.startActivity(i);
             }
-
         });
 
         Button joinButton = (Button) this.findViewById(R.id.join_game_button);

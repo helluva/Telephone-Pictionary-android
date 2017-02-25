@@ -1,9 +1,11 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -45,7 +47,6 @@ public class AlertHelper {
             public void onClick(DialogInterface dialog, int which) {
                 editText.clearFocus();
                 dialog.dismiss();
-
             }
         });
 

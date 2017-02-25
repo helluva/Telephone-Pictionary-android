@@ -1,38 +1,35 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.content.Intent;
 import android.widget.Button;
-import android.widget.EditText;
 
-public class TextDescriptionActivity extends AppCompatActivity {
+/**
+ * Created by Nate on 2/25/17.
+ */
+
+public class TextWithSketchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_text);
+        setContentView(R.layout.activity_text_w_sketch);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Intent i = getIntent();
 
-        Button nextButton = (Button) this.findViewById(R.id.next_button_text1);
+        Button nextButton = (Button) this.findViewById(R.id.next_button_text2);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText textDescription = (EditText) findViewById(R.id.description_field);
-                String description = textDescription.getText().toString();
-
-                Intent i = new Intent(TextDescriptionActivity.this, SketchActivity.class);
-                i.putExtra("text_description", description);
-                TextDescriptionActivity.this.startActivity(i);
+                Intent i = new Intent(TextWithSketchActivity.this, SketchActivity.class);
+                TextWithSketchActivity.this.startActivity(i);
             }
         });
 

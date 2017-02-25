@@ -23,6 +23,5 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_sketch" />
-    <include layout="@layout/content_sketchcolor" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.helluva.telephone_pictionary_android;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * Created by Nate on 2/25/17.
@@ -28,7 +30,11 @@ public class TextWithSketchActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText textDescription = (EditText) findViewById(R.id.description_field);
+                String description = textDescription.getText().toString();
+
                 Intent i = new Intent(TextWithSketchActivity.this, SketchActivity.class);
+                i.putExtra("text_description", description);
                 TextWithSketchActivity.this.startActivity(i);
             }
         });

@@ -16,4 +16,8 @@ public class Player {
         this.username = username;
     }
 
+    public boolean hasSeen(int trainID) {
+        return false;
+    }
+
 }

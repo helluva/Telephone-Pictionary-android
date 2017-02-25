@@ -13,10 +13,23 @@
     tools:context="com.helluva.telephone_pictionary_android.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <Button
+        android:text="Join Game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_below="@+id/host_game_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/join_game_button"
+        android:textStyle="bold" />
+
+    <Button
+        android:text="Host Game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="169dp"
+        android:id="@+id/host_game_button"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
 </RelativeLayout>

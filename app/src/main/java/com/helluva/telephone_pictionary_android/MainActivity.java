@@ -22,12 +22,41 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    Socket s = new Socket("172.16.100.122", 1337);
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+                    System.out.println(reader.readLine());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+
+
+
 
         //set up the activity
         super.onCreate(savedInstanceState);
@@ -44,21 +73,54 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new AlertHelper(activity, "Game Name", "Create") {
+                new AlertHelper(activity, "Your Name", "Next").displayWithCompletion(new AlertHelper.AlertCompletion() {
 
                     @Override
-                    public void receiveString(String response) {
-                        System.out.println(response);
-                        System.out.println("dab");
+                    public void receiveString(final String playerName) {
+                        new AlertHelper(activity, "Game Name", "Create").displayWithCompletion(new AlertHelper.AlertCompletion() {
+
+                            @Override
+                            public void receiveString(String gameName) {
+                                hostGame(playerName, gameName);
+                            }
+
+                        });
                     }
 
-                }.display();
-
-
+                });
             }
 
         });
+    }
 
+    public void hostGame(final String hostName, final String gameName) {
+
+        //get current list of games
+        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        final DatabaseReference allSessions = firebase.getReference(GameSession.FB_SESSIONS_KEY);
+
+        allSessions.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                GenericTypeIndicator<ArrayList<GameSession>> type = new GenericTypeIndicator<ArrayList<GameSession>>() { };
+                ArrayList<GameSession> sessions = dataSnapshot.getValue(type);
+                if (sessions == null) {
+                    sessions = new ArrayList<>();
+                }
+
+                //create new session
+                Player host = new Player(hostName);
+                GameSession session = new GameSession(gameName, host);
+
+                sessions.add(session);
+                allSessions.setValue(sessions);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+        });
+        
         Button textViewButton = (Button) this.findViewById(R.id.text_description_button);
         textViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,17 +138,18 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(i);
             }
         });
+
     }
 
-@Override
-public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-        }
+    }
 
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -94,7 +157,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-        return true;
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

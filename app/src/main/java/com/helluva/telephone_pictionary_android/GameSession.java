@@ -21,11 +21,11 @@ public class GameSession {
     String name;
     SessionState state;
 
-    HostPlayer owner;
+    Player owner;
 
     List<Player> players;
 
-    public GameSession(String name, HostPlayer owner) {
+    public GameSession(String name, Player owner) {
         this.state = SessionState.WaitingForPlayers;
         this.name = name;
         this.owner = owner;
@@ -39,6 +39,14 @@ public class GameSession {
         this.name = null;
         this.owner = null;
         this.players = null;
+    }
+
+    public int[] getListOfAvailableTrains() {
+        return new int[0];
+    }
+
+    public boolean requestTrain(int trainID) {
+        return false;
     }
 
 }

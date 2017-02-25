@@ -11,7 +11,7 @@ import android.widget.EditText;
  * Created by cal on 2/25/17.
  */
 
-public abstract class AlertHelper {
+public class AlertHelper {
 
     private final Context context;
     private final String title;
@@ -23,10 +23,7 @@ public abstract class AlertHelper {
         this.positiveButtonString = positiveButtonString;
     }
 
-    //implement this method to receive the text from the user
-    public abstract void receiveString(String response);
-
-    public void display() {
+    public void displayWithCompletion(final AlertCompletion completion) {
         final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this.context);
         alertBuilder.setTitle(this.title);
 
@@ -38,7 +35,7 @@ public abstract class AlertHelper {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String response = editText.getText().toString();
-                receiveString(response);
+                completion.receiveString(response);
             }
         });
 
@@ -53,6 +50,10 @@ public abstract class AlertHelper {
         editText.requestFocus();
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+
+    public interface AlertCompletion {
+        public abstract void receiveString(String value);
     }
 
 }

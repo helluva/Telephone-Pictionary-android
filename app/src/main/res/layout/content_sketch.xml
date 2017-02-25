@@ -17,7 +17,7 @@
 
     <com.agsw.FabricView.FabricView
         android:layout_width="wrap_content"
-        android:layout_height="480dp"
+        android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:id="@+id/faricView"
         android:layout_centerHorizontal="true"

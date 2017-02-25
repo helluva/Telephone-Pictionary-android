@@ -1,48 +1,44 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
+/**
+ * Created by Nate on 2/25/17.
+ */
 
-import java.util.ArrayList;
-
-public class HostGameActivity extends AppCompatActivity {
+public class TextWithSketchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_host);
+        setContentView(R.layout.activity_text_w_sketch);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Intent i = getIntent();
 
-        Button createButton = (Button) this.findViewById(R.id.create_button);
-        createButton.setOnClickListener(new View.OnClickListener() {
+        Button nextButton = (Button) this.findViewById(R.id.next_button_text2);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText player = (EditText) findViewById(R.id.player_name);
-                String playerName = player.getText().toString();
+                EditText textDescription = (EditText) findViewById(R.id.description_field);
+                String description = textDescription.getText().toString();
 
-                EditText game = (EditText) findViewById(R.id.game_name);
-                String gameName = game.getText().toString();
-
-                hostGame(playerName, gameName);
+                Intent i = new Intent(TextWithSketchActivity.this, SketchActivity.class);
+                i.putExtra("text_description", description);
+                TextWithSketchActivity.this.startActivity(i);
             }
         });
+
     }
 
     @Override
@@ -65,17 +61,4 @@ public class HostGameActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-    public void hostGame(final String hostName, final String gameName) {
-
-        String newGameMessage = "hostGame:" + hostName + "," + gameName;
-        ((ApplicationState)getApplicationContext()).sendMessage(newGameMessage);
-
-        Intent intent = new Intent(HostGameActivity.this, PlayerlistActivity.class);
-        this.startActivity(intent);
-
-    }
-
 }

@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class TextDescriptionActivity extends AppCompatActivity {
 
@@ -20,12 +22,25 @@ public class TextDescriptionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent i = getIntent();
+
+        Button nextButton = (Button) this.findViewById(R.id.next_button_text1);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText textDescription = (EditText) findViewById(R.id.description_field);
+                String description = textDescription.getText().toString();
+
+                Intent i = new Intent(TextDescriptionActivity.this, SketchActivity.class);
+                i.putExtra("text_description", description);
+                TextDescriptionActivity.this.startActivity(i);
+            }
+        });
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

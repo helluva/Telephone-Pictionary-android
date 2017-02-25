@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "889372771442",
+    "firebase_url": "https://picttel-b5edf.firebaseio.com",
+    "project_id": "picttel-b5edf",
+    "storage_bucket": "picttel-b5edf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889372771442:android:6939973f43ce149e",
+        "android_client_info": {
+          "package_name": "com.helluva.telephone_pictionary_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889372771442-fa5bg1e433ut5svs33i7959c7gp0qlbq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.helluva.telephone_pictionary_android",
+            "certificate_hash": "ad539998b8feeb8b449d79decdf46640661ec702"
+          }
+        },
+        {
+          "client_id": "889372771442-n41v50efje8k6qgquonsdfocntssmkg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI4S0fiZ2NaLc480kf8mKMuOdUw_GbLtA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889372771442-n41v50efje8k6qgquonsdfocntssmkg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

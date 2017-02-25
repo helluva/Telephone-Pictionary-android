@@ -1,10 +1,12 @@
 package com.helluva.telephone_pictionary_android;
 
+import java.io.Serializable;
+
 /**
  * Created by cal on 2/25/17.
  */
 
-public class Player {
+public class Player implements Serializable {
 
     String username;
 

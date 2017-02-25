@@ -19,14 +19,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <EditText
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/description_field"
-        android:layout_marginTop="100dp"
-        android:hint="Enter Description"/>
 
     <include layout="@layout/content_text" />
 

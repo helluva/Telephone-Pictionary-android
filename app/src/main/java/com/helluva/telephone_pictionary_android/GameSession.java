@@ -41,4 +41,12 @@ public class GameSession {
         this.players = null;
     }
 
+    public int[] getListOfAvailableTrains() {
+        return new int[0];
+    }
+
+    public boolean requestTrain(int trainID) {
+        return false;
+    }
+
 }

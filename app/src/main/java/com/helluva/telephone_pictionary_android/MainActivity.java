@@ -1,6 +1,7 @@
 package com.helluva.telephone_pictionary_android;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.text.InputType;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -41,29 +43,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activity);
-                alertBuilder.setTitle("Game Name");
+                new AlertHelper(activity, "Game Name", "Create") {
 
-                final EditText editText = new EditText(activity);
-                editText.setInputType(InputType.TYPE_CLASS_TEXT);
-                alertBuilder.setView(editText);
-
-                alertBuilder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String sessionName = editText.getText().toString();
-                        System.out.println(sessionName);
+                    public void receiveString(String response) {
+                        System.out.println(response);
+                        System.out.println("dab");
                     }
-                });
 
-                alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                alertBuilder.show();
+                }.display();
 
             }
 

@@ -8,13 +8,24 @@ import java.util.ArrayList;
 
 public class GameSession {
 
+    //important Firebase keys
+    static String FB_SESSIONS_KEY = "ActiveSessions";
+
+    //SessionState
+    public enum SessionState {
+        WaitingForPlayers, GameInProgress;
+    }
+
+    //GameSession
     String name;
+    SessionState state;
 
     Player owner;
     ArrayList<Player> players;
 
 
-    public GameSession(String name, Player owner) {
+    public GameSession(String name, HostPlayer owner) {
+        this.state = SessionState.WaitingForPlayers;
         this.name = name;
         this.owner = owner;
 
@@ -23,6 +34,7 @@ public class GameSession {
     }
 
     public GameSession() {
+        this.state = SessionState.WaitingForPlayers;
         this.name = null;
         this.owner = null;
         this.players = null;

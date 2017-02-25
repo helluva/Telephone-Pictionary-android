@@ -1,6 +1,7 @@
 package com.helluva.telephone_pictionary_android;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -37,24 +38,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Thread thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    Socket s = new Socket("172.16.100.122", 1337);
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-
-                    System.out.println(reader.readLine());
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        thread.start();
-
+        //start listening to the node server
+        ApplicationState appState = (ApplicationState) this.getApplicationContext();
+        if (appState.outputStream == null) {
+            appState.spinUpSocket();
+        }
 
 
 
@@ -68,8 +56,17 @@ public class MainActivity extends AppCompatActivity {
         hostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, HostGameActivity.class);
-                MainActivity.this.startActivity(i);
+
+                ((ApplicationState) getApplicationContext()).sendMessage("host new game", new ApplicationState.NodeCallback() {
+                    @Override
+                    public void receivedString(String message) {
+                        System.out.println("CALLBACK!!");
+                        System.out.println(message);
+                    }
+                });
+
+                //Intent i = new Intent(MainActivity.this, HostGameActivity.class);
+                //MainActivity.this.startActivity(i);
             }
         });
 

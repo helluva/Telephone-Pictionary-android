@@ -17,22 +17,4 @@ public class Game {
     public Game() {
     }
 
-    public void assignTrainsToWaitingPlayers() {
-
-        int[] trainIDs = gameSession.getListOfAvailableTrains();
-
-        for (int i : trainIDs) {
-            for (Player player : waitingPlayers) {
-                if (!player.hasSeen(i)) {
-                    assignTrainToPlayer(i, player);
-                }
-            }
-        }
-
-    }
-
-    public void assignTrainToPlayer(int trainID, Player p) {
-        // idk
-    }
-
 }

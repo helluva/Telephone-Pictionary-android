@@ -95,25 +95,32 @@ public class MainActivity extends AppCompatActivity {
     public void hostGame(final String hostName, final String gameName) {
 
         //get current list of games
-        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        final FirebaseDatabase firebase = FirebaseDatabase.getInstance();
         final DatabaseReference allSessions = firebase.getReference(GameSession.FB_SESSIONS_KEY);
 
-        allSessions.addValueEventListener(new ValueEventListener() {
+        allSessions.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                GenericTypeIndicator<ArrayList<GameSession>> type = new GenericTypeIndicator<ArrayList<GameSession>>() { };
-                ArrayList<GameSession> sessions = dataSnapshot.getValue(type);
+                GenericTypeIndicator<ArrayList<String>> type = new GenericTypeIndicator<ArrayList<String>>() { };
+                ArrayList<String> sessions = dataSnapshot.getValue(type);
                 if (sessions == null) {
                     sessions = new ArrayList<>();
                 }
 
-                //create new session
-                Player host = new Player(hostName);
-                GameSession session = new GameSession(gameName, host);
+                if (sessions.contains(gameName)) {
+                    //error?
+                } else {
+                    sessions.add(gameName);
+                    allSessions.setValue(sessions);
 
-                sessions.add(session);
-                allSessions.setValue(sessions);
+                    Player host = new Player(hostName);
+                    GameSession session = new GameSession(gameName, host);
+
+                    final DatabaseReference newSession = firebase.getReference(session.firebaseSessionKey());
+                    newSession.setValue(session);
+
+                }
+
             }
 
             @Override

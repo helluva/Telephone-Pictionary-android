@@ -22,7 +22,6 @@ public class GameSession {
     SessionState state;
 
     Player owner;
-
     List<Player> players;
 
     public GameSession(String name, Player owner) {
@@ -41,12 +40,8 @@ public class GameSession {
         this.players = null;
     }
 
-    public int[] getListOfAvailableTrains() {
-        return new int[0];
-    }
-
-    public boolean requestTrain(int trainID) {
-        return false;
+    public String firebaseSessionKey() {
+        return "session: " + this.name;
     }
 
 }

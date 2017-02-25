@@ -8,9 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.content.Intent;
 
 public class SketchActivity extends AppCompatActivity {
+
+
+    private Spinner colorSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +25,17 @@ public class SketchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent i = getIntent();
+
+
+/*
+        Spinner spinner = (Spinner) findViewById(R.id.color_spinner);
+        //spinner.setOnItemSelectedListener(this);
+
+        //for the new spinner
+        ColorSpinnerAdapter<Colors> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Colors.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colorSpinner.setAdapter(adapter);
+        */
     }
 
     @Override

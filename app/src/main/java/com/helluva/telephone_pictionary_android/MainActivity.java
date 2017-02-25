@@ -90,6 +90,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button startButton = (Button) this.findViewById(R.id.start_game_button);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, TextDescriptionActivity.class);
+                MainActivity.this.startActivity(i);
+            }
+        });
+
     }
 
     public void hostGame(final String hostName, final String gameName) {
@@ -135,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

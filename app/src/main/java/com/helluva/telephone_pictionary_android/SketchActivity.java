@@ -9,11 +9,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< Updated upstream
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.agsw.FabricView.FabricView;
+=======
+import android.content.Intent;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+>>>>>>> Stashed changes
 
 public class SketchActivity extends AppCompatActivity {
 
@@ -28,6 +35,7 @@ public class SketchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent i = getIntent();
+<<<<<<< Updated upstream
 
 /*
         Button redButton = (Button) this.findViewById(R.id.red_button);
@@ -49,12 +57,29 @@ public class SketchActivity extends AppCompatActivity {
         ArrayAdapter<Colors> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Colors.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         colorSpinner.setAdapter(adapter);
+=======
+        String description = getIntent().getStringExtra("text_description");
+
+        TextView textDescription = (TextView) this.findViewById(R.id.description_text_view);
+        textDescription.setText(description);
+
+        Button nextButton = (Button) this.findViewById(R.id.next_button_sketch);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent i = new Intent(SketchActivity.this, TextWithSketchActivity.class);
+                SketchActivity.this.startActivity(i);
+            }
+        });
+
+>>>>>>> Stashed changes
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

@@ -3,14 +3,32 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:text="Enter Description" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/description_field"
-        android:layout_marginTop="100dp"
-        android:hint="Enter Description"
+        android:hint="description"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/next_button_text1"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
 

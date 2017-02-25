@@ -1,9 +1,11 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -36,13 +38,15 @@ public class AlertHelper {
             public void onClick(DialogInterface dialog, int which) {
                 String response = editText.getText().toString();
                 completion.receiveString(response);
+                dialog.dismiss();
             }
         });
 
         alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                editText.clearFocus();
+                dialog.dismiss();
             }
         });
 

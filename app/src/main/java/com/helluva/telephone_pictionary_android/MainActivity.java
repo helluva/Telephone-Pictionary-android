@@ -65,16 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
                 alertBuilder.show();
 
-<<<<<<< Updated upstream
+
             }
 
         });
     }
-=======
-}
-});
-        }
->>>>>>> Stashed changes
 
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,10 +91,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
         }
 
         return super.onOptionsItemSelected(item);
-<<<<<<< Updated upstream
     }
 
-=======
-        }
->>>>>>> Stashed changes
 }

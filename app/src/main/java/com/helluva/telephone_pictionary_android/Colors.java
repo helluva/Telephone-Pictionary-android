@@ -4,11 +4,15 @@ import android.graphics.Color;
 
 public enum Colors {
     BLACK("Black", Color.BLACK),
-    RED("Red", Color.RED),
+    BLUE("Blue", Color.BLUE),
+    CYAN("Cyan", Color.parseColor("#00CCCC")),
     GREEN("Green", Color.GREEN),
-    BLUE("Blue", Color.BLUE);
+    YELLOW("Yellow", Color.YELLOW),
+    ORANGE("Orange", Color.parseColor("#FF8000")),
+    RED("Red", Color.RED),
+    GREY("Grey", Color.GRAY);
 
-    //may need to make public????
+    
     private final String selectedColorName;
     private final int selectedColor;
 

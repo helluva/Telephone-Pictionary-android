@@ -1,16 +1,17 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.content.Intent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+
 
 public class TextDescriptionActivity extends AppCompatActivity {
 
@@ -35,6 +36,33 @@ public class TextDescriptionActivity extends AppCompatActivity {
 
                 Intent i = new Intent(TextDescriptionActivity.this, WaitActivity.class);
                 TextDescriptionActivity.this.startActivity(i);
+            }
+            /*InputMethodManager inputManager = (InputMethodManager)
+                    getSystemService(TextDescriptionActivity.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow((null ==
+            getCurrentFocus()) ? null : getCurrentFocus().getWindowToken(),
+            InputMethodManager.HIDE_NOT_ALWAYS);*/
+        });
+
+        // Set a key listener callback so that users can search by pressing "Enter"
+        nextButton.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_ENTER ) {
+                    if( event.getAction() == KeyEvent.ACTION_UP ) {
+                        EditText textDescription = (EditText) findViewById(R.id.description_field);
+                        String description = textDescription.getText().toString();
+
+                        String captionMessage = "provideCaption:" + description;
+                        ((ApplicationState)getApplicationContext()).sendMessage(captionMessage);
+
+                        Intent i = new Intent(TextDescriptionActivity.this, WaitActivity.class);
+                        TextDescriptionActivity.this.startActivity(i);
+                    }
+                    return true;
+                }
+                return false;
             }
         });
 

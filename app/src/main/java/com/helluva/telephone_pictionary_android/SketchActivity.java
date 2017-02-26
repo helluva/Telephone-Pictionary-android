@@ -42,7 +42,7 @@ public class SketchActivity extends AppCompatActivity {
         TextView textDescription = (TextView) this.findViewById(R.id.description_text_view);
         textDescription.setText(description);
 
-        /*Button nextButton = (Button) this.findViewById(R.id.next_button_sketch);
+        Button nextButton = (Button) this.findViewById(R.id.next_button_sketch);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,11 +54,10 @@ public class SketchActivity extends AppCompatActivity {
                 String imageMessage = "provideImage:" + base64String;
                 ((ApplicationState)getApplicationContext()).sendMessage(imageMessage);
 
-
                 Intent i = new Intent(SketchActivity.this, WaitActivity.class);
                 SketchActivity.this.startActivity(i);
             }
-        });*/
+        });
 
 
 

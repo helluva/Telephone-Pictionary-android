@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.helluva.telephone_pictionary_android.GamelistFragment"
+        android:id="@+id/gamelist_fragment"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Active Games"
@@ -10,12 +18,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:textSize="24sp"
-        android:padding="15dp" />
-
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.helluva.telephone_pictionary_android.GamelistFragment"
-        android:id="@+id/gamelist_fragment"
-         />
-</LinearLayout>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+</RelativeLayout>

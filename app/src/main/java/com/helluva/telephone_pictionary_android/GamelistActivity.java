@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -25,6 +26,16 @@ public class GamelistActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gamelist);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GamelistActivity.this, MainActivity.class);
+                GamelistActivity.this.startActivity(i);
+            }
+        });
 
         ((ApplicationState)getApplicationContext()).makeRequest("requestListOfGames", new ApplicationState.NodeCallback() {
             @Override

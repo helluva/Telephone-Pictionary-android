@@ -23,7 +23,24 @@ public class WaitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wait);
 
-        Intent i = getIntent();
+        ((ApplicationState)getApplicationContext()).registerListenerForNodeMethod("nextCaption", "waitingForCaption", new ApplicationState.NodeCallback() {
+            @Override
+            public void receivedString(String message) {
+
+                Intent draw = new Intent(WaitActivity.this, SketchActivity.class);
+                draw.putExtra("text_description", message);
+                WaitActivity.this.startActivity(draw);
+
+            }
+        });
+
+        ((ApplicationState)getApplicationContext()).registerListenerForNodeMethod("nextImage", "waitingForImage", new ApplicationState.NodeCallback() {
+            @Override
+            public void receivedString(String message) {
+                System.out.println("LOADED IMAGE!!!!!");
+            }
+        });
+
 
     }
 

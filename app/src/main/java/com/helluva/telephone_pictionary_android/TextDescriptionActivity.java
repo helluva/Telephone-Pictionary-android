@@ -31,7 +31,7 @@ public class TextDescriptionActivity extends AppCompatActivity {
                 String description = textDescription.getText().toString();
 
                 String captionMessage = "provideCaption:" + description;
-                ((ApplicationState)getApplicationContext()).sendMessage("provideCaption:");
+                ((ApplicationState)getApplicationContext()).sendMessage(captionMessage);
 
                 Intent i = new Intent(TextDescriptionActivity.this, WaitActivity.class);
                 TextDescriptionActivity.this.startActivity(i);

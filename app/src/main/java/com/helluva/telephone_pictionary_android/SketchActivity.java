@@ -100,8 +100,8 @@ public class SketchActivity extends AppCompatActivity {
         Spinner sizeSpinner = (Spinner) findViewById(R.id.size_spinner);
 
         //for the new spinner
-        ArrayAdapter<Sizes> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Sizes.values());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<Sizes> adapter2 = new ArrayAdapter(this,R.layout.spinner_size_item, Sizes.values());
+        adapter.setDropDownViewResource(R.layout.spinner_size_item);
         sizeSpinner.setAdapter(adapter2);
 
         sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

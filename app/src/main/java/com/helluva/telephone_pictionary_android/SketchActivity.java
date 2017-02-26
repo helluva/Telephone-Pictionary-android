@@ -161,13 +161,17 @@ public class SketchActivity extends AppCompatActivity {
     {
         ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
         image.compress(compressFormat, quality, byteArrayOS);
-        return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.URL_SAFE | Base64.NO_WRAP);
+
+        String encoded = Base64.encodeToString(byteArrayOS.toByteArray(), Base64.NO_WRAP);
+        encoded = encoded.replace("/", "~");
+        return encoded;
     }
 
     public static Bitmap decodeBase64(String input)
     {
-        byte[] decodedBytes = Base64.decode(input, Base64.URL_SAFE | Base64.NO_WRAP);
-        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+        input = input.replace("~", "/");
+        byte[] decodedBytes = Base64.decode(input, Base64.NO_WRAP);
+        BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
 }

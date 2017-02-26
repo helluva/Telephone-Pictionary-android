@@ -9,6 +9,7 @@ import android.graphics.LightingColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -131,6 +132,10 @@ public class SketchActivity extends AppCompatActivity {
             canvas.drawColor(Color.WHITE);
         view.draw(canvas);
         return returnedBitmap;
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
     @Override

@@ -1,40 +1,29 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-public class TextDescriptionActivity extends AppCompatActivity {
+/**
+ * Created by Nate on 2/25/17.
+ */
+
+public class WaitActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_text);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_wait);
 
         Intent i = getIntent();
-
-        Button nextButton = (Button) this.findViewById(R.id.next_button_text1);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText textDescription = (EditText) findViewById(R.id.description_field);
-                String description = textDescription.getText().toString();
-
-                Intent i = new Intent(TextDescriptionActivity.this, WaitActivity.class);
-                i.putExtra("text_description", description);
-                TextDescriptionActivity.this.startActivity(i);
-            }
-        });
 
     }
 
@@ -58,4 +47,5 @@ public class TextDescriptionActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

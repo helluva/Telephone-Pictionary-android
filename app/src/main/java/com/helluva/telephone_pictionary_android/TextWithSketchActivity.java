@@ -33,7 +33,7 @@ public class TextWithSketchActivity extends AppCompatActivity {
                 EditText textDescription = (EditText) findViewById(R.id.description_field);
                 String description = textDescription.getText().toString();
 
-                Intent i = new Intent(TextWithSketchActivity.this, SketchActivity.class);
+                Intent i = new Intent(TextWithSketchActivity.this, WaitActivity.class);
                 i.putExtra("text_description", description);
                 TextWithSketchActivity.this.startActivity(i);
             }

@@ -38,13 +38,6 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp" />
 
-    <com.agsw.FabricView.FabricView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fabricView"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/description_text_view" />
-
     <Button
         android:text="Next"
         android:layout_width="wrap_content"
@@ -57,18 +50,24 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="7dp" />
 
-    <Spinner
+    <com.agsw.FabricView.FabricView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:id="@+id/color_spinner"
-        android:layout_marginStart="24dp"
-        android:layout_gravity="bottom|left"
-        android:spinnerMode="dropdown"
-        android:drawSelectorOnTop="true"
+        android:id="@+id/fabricView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/color_spinner"
+        android:layout_gravity="bottom|left"
+        android:spinnerMode="dropdown"
+        android:drawSelectorOnTop="true"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="29dp" />
 
 </RelativeLayout>
 

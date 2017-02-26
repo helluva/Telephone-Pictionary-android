@@ -70,7 +70,7 @@ public class HostGameActivity extends AppCompatActivity {
 
     public void hostGame(final String hostName, final String gameName) {
 
-        String newGameMessage = "hostGame:" + hostName + "," + gameName;
+        String newGameMessage = "hostGame:" + gameName + "," + hostName;
         ((ApplicationState)getApplicationContext()).sendMessage(newGameMessage);
 
         Intent intent = new Intent(HostGameActivity.this, PlayerlistActivity.class);

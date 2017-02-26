@@ -176,7 +176,7 @@ public class SketchActivity extends AppCompatActivity {
     {
         input = input.replace("~", "/");
         byte[] decodedBytes = Base64.decode(input, Base64.NO_WRAP);
-        BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
 }

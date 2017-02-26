@@ -92,7 +92,8 @@ public class PlayerlistActivity extends AppCompatActivity {
             TextView waitingText = new TextView(this);
             waitingText.setText("Waiting for host to start game...");
             waitingText.setLayoutParams(new Toolbar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            waitingText.setPadding(10,10,10,10);
+            waitingText.setPadding(10, 10, 10, 10);
+            waitingText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             layout.addView(waitingText);
         }
 

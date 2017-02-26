@@ -50,10 +50,14 @@ public class GamelistActivity extends AppCompatActivity {
                         displayContent.removeAll(displayContent);
                         gamesAndIds.removeAll(gamesAndIds);
                         for (String gameInfo : games) {
-                            gamesAndIds.add(gameInfo);
+                            if (gameInfo != "") {
+                                gamesAndIds.add(gameInfo);
 
-                            String diplayName = gameInfo.split(",")[1];
-                            displayContent.add(diplayName);
+                                String diplayName = gameInfo.split(",")[1];
+                                System.out.println(gameInfo);
+
+                                displayContent.add(diplayName);
+                            }
                         }
 
                         GamelistFragment fragment = (GamelistFragment) GamelistActivity.this.getFragmentManager().findFragmentById(R.id.gamelist_fragment);

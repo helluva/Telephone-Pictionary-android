@@ -1,37 +1,13 @@
 package com.helluva.telephone_pictionary_android;
 
-import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.content.Intent;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,15 +46,6 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(gamelist);
             }
 
-        });
-
-        Button textViewButton = (Button) this.findViewById(R.id.text_description_button);
-        textViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, TextDescriptionActivity.class);
-                MainActivity.this.startActivity(i);
-            }
         });
 
         Button sketchButton = (Button) this.findViewById(R.id.sketch_button);

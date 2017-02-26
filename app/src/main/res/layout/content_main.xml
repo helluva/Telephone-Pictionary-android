@@ -34,28 +34,20 @@
         android:layout_alignStart="@+id/join_game_button" />
 
     <Button
-        android:text="Sketch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sketch_button"
-        android:layout_below="@+id/text_description_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
-
-    <Button
-        android:text="Text Description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_description_button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
         android:text="Start Game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/start_game_button"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/sketch_button"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Sketch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sketch_button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

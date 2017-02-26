@@ -51,7 +51,7 @@ public class SketchActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                Intent i = new Intent(SketchActivity.this, TextWithSketchActivity.class);
+                Intent i = new Intent(SketchActivity.this, WaitActivity.class);
                 SketchActivity.this.startActivity(i);
             }
         });

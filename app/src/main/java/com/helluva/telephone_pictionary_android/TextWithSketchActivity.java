@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,11 +41,50 @@ public class TextWithSketchActivity extends AppCompatActivity {
                 EditText textDescription = (EditText) findViewById(R.id.description_field);
                 String description = textDescription.getText().toString();
 
-                String captionMessage = "provideCaption:" + description;
-                ((ApplicationState)getApplicationContext()).sendMessage(captionMessage);
+                // Reset errors.
+                textDescription.setError(null);
 
-                Intent i = new Intent(TextWithSketchActivity.this, WaitActivity.class);
-                TextWithSketchActivity.this.startActivity(i);
+                if (TextUtils.isEmpty(description)) {
+                    textDescription.setError("You gotta enter a phrase to continue yah fool");
+
+                } else {
+                    String captionMessage = "provideCaption:" + description;
+                    ((ApplicationState) getApplicationContext()).sendMessage(captionMessage);
+
+                    Intent i = new Intent(TextWithSketchActivity.this, WaitActivity.class);
+                    TextWithSketchActivity.this.startActivity(i);
+                }
+            }
+        });
+
+        // Set a key listener callback so that someone can submit a description with the "enter" key
+        EditText textDescription = (EditText) findViewById(R.id.description_field);
+        textDescription.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_ENTER ) {
+                    if( event.getAction() == KeyEvent.ACTION_UP ) {
+                        EditText textDescription = (EditText) findViewById(R.id.description_field);
+                        String description = textDescription.getText().toString();
+
+                        // Reset errors.
+                        textDescription.setError(null);
+
+                        if (TextUtils.isEmpty(description)) {
+                            textDescription.setError("You gotta enter a phrase to " +
+                            "continue yah fool");
+
+                        } else {
+                            String captionMessage = "provideCaption:" + description;
+                            ((ApplicationState) getApplicationContext()).sendMessage(captionMessage);
+
+                            Intent i = new Intent(TextWithSketchActivity.this, WaitActivity.class);
+                            TextWithSketchActivity.this.startActivity(i);
+                        }
+                    }
+                    return true;
+                }
+                return false;
             }
         });
 

@@ -34,6 +34,7 @@ public class PlayerlistActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(PlayerlistActivity.this, HostGameActivity.class);
                 PlayerlistActivity.this.startActivity(i);
+                ((ApplicationState)getApplicationContext()).sendMessage("playerLeave");
             }
         });
 

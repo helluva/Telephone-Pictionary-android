@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 //<<<<<<< Updated upstream
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -66,14 +67,24 @@ public class SketchActivity extends AppCompatActivity {
 
         });
 */
-//        Spinner spinner = (Spinner) findViewById(R.id.color_spinner);
-        //spinner.setOnItemSelectedListener(this);
+        Spinner colorSpinner = (Spinner) findViewById(R.id.color_spinner);
 
         //for the new spinner
         ArrayAdapter<Colors> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Colors.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        colorSpinner.setAdapter(adapter);
+        colorSpinner.setAdapter(adapter);
 
+
+
+        /* colorSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Colors newColor = Colors.values()[position];
+                FabricView canvas = (FabricView) findViewById(R.id.faricView);
+                canvas.setColor(newColor.getColor());
+                //colorSpinner.setSelection(canvas.setColor(newColor);
+            }
+        }); */
     }
 
     public static Bitmap getBitmapFromView(View view) {

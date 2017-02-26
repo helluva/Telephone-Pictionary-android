@@ -7,11 +7,11 @@ public enum Sizes {
 
 
     private final String selectedSizeName;
-    private final float selectedSize;
+    private float selectedSize;
 
-    Sizes(String selectedColorName, float selectedColor) {
-        this.selectedSizeName = selectedColorName;
-        this.selectedSize = selectedColor;
+    Sizes(String selectedSizeName, float selectedSize) {
+        this.selectedSizeName = selectedSizeName;
+        this.selectedSize = selectedSize;
     }
 
     public String toString() {
@@ -20,6 +20,9 @@ public enum Sizes {
 
     public float getSize() {
         return selectedSize;
+    }
+    public void setSize(float newSize) {
+        this.selectedSize = newSize;
     }
 }
 

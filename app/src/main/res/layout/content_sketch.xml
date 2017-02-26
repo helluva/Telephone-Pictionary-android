@@ -30,18 +30,6 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp" />
 
-    <Button
-        android:text="Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/next_button_sketch"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="230dp"
-        android:layout_marginEnd="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="7dp" />
-
     <TextView
         android:text="Sizes"
         android:textColor="#000"
@@ -69,9 +57,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fabricView"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/color_spinner" />
+        android:layout_above="@+id/color_spinner"
+        android:layout_below="@+id/description_text_view" />
 
     <Spinner
         android:layout_width="wrap_content"

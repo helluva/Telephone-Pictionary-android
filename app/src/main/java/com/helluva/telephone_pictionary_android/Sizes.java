@@ -3,7 +3,8 @@ package com.helluva.telephone_pictionary_android;
 public enum Sizes {
     SMALL("Small", 2f),
     DEFAULT("Medium", 7f),
-    LARGE("Large", 15f);
+    LARGE("Large", 15f),
+    HUGE("Huge", 50f);
 
 
     private final String selectedSizeName;

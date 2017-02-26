@@ -46,6 +46,14 @@ public class WaitActivity extends AppCompatActivity {
             }
         });
 
+        ((ApplicationState)getApplicationContext()).registerListenerForNodeMethod("gameEnded", "gameEndedListener", new ApplicationState.NodeCallback() {
+            @Override
+            public void receivedString(String message) {
+                Intent mainScreen = new Intent(WaitActivity.this, MainActivity.class);
+                WaitActivity.this.startActivity(mainScreen);
+            }
+        });
+
 
     }
 

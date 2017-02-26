@@ -2,6 +2,7 @@ package com.helluva.telephone_pictionary_android;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
@@ -10,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,8 @@ import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
 
 public class SketchActivity extends AppCompatActivity {
 
@@ -47,8 +51,16 @@ public class SketchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                FabricView canvas = (FabricView) findViewById(R.id.fabricView);
+                Bitmap image = canvas.getCanvasBitmap();
+                String base64String = SketchActivity.encodeToBase64(image, Bitmap.CompressFormat.PNG, 100);
+
+                System.out.println(base64String);
 
                 Intent i = new Intent(SketchActivity.this, WaitActivity.class);
+
+
+
                 SketchActivity.this.startActivity(i);
             }
         });
@@ -147,4 +159,21 @@ public class SketchActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    //BITMAP HELPERS
+
+    public static String encodeToBase64(Bitmap image, Bitmap.CompressFormat compressFormat, int quality)
+    {
+        ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
+        image.compress(compressFormat, quality, byteArrayOS);
+        return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.DEFAULT);
+    }
+
+    public static Bitmap decodeBase64(String input)
+    {
+        byte[] decodedBytes = Base64.decode(input, 0);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+    }
+
 }

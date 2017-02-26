@@ -3,18 +3,21 @@ package com.helluva.telephone_pictionary_android;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 
 public class HostGameActivity extends AppCompatActivity {
 
     private String gameName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +37,60 @@ public class HostGameActivity extends AppCompatActivity {
             }
         });
 
-
-
         Intent i = getIntent();
+
+
 
         Button createButton = (Button) this.findViewById(R.id.create_button);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText player = (EditText) findViewById(R.id.player_name);
-                String playerName = player.getText().toString();
+                EditText playerText = (EditText) findViewById(R.id.player_name);
+                String playerName = playerText.getText().toString();
 
-                EditText game = (EditText) findViewById(R.id.game_name);
-                gameName = game.getText().toString();
+                EditText gameText = (EditText) findViewById(R.id.game_name);
+                gameName = gameText.getText().toString();
 
-                hostGame(playerName, gameName);
+                // Reset errors.
+                playerText.setError(null);
+                gameText.setError(null);
+
+                if (TextUtils.isEmpty(playerName) || TextUtils.isEmpty(gameName)) {
+                    playerText.setError("You must enter both fields to continue");
+
+                } else {
+                    hostGame(playerName, gameName);
+                }
+            }
+        });
+
+        // Set a key listener callback
+        EditText gameText = (EditText) findViewById(R.id.game_name);
+        gameText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_ENTER ) {
+                    if( event.getAction() == KeyEvent.ACTION_UP ) {
+                        EditText playerText = (EditText) findViewById(R.id.player_name);
+                        String playerName = playerText.getText().toString();
+
+                        EditText gameText = (EditText) findViewById(R.id.game_name);
+                        gameName = gameText.getText().toString();
+
+                        // Reset errors.
+                        playerText.setError(null);
+                        gameText.setError(null);
+
+                        if (TextUtils.isEmpty(playerName) || TextUtils.isEmpty(gameName)) {
+                            playerText.setError("You must enter both fields to continue");
+
+                        } else {
+                            hostGame(playerName, gameName);
+                        }
+                    }
+                    return true;
+                }
+                return false;
             }
         });
     }

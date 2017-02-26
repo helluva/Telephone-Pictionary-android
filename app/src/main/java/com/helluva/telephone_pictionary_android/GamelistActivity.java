@@ -1,5 +1,6 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -50,10 +52,14 @@ public class GamelistActivity extends AppCompatActivity {
                         displayContent.removeAll(displayContent);
                         gamesAndIds.removeAll(gamesAndIds);
                         for (String gameInfo : games) {
-                            gamesAndIds.add(gameInfo);
+                            if (gameInfo != "") {
+                                gamesAndIds.add(gameInfo);
 
-                            String diplayName = gameInfo.split(",")[1];
-                            displayContent.add(diplayName);
+                                String diplayName = gameInfo.split(",")[1];
+                                System.out.println(gameInfo);
+
+                                displayContent.add(diplayName);
+                            }
                         }
 
                         GamelistFragment fragment = (GamelistFragment) GamelistActivity.this.getFragmentManager().findFragmentById(R.id.gamelist_fragment);

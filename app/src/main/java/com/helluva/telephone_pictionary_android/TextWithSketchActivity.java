@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 /**
  * Created by Nate on 2/25/17.
@@ -25,6 +26,11 @@ public class TextWithSketchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent i = getIntent();
+        String base64 = i.getStringExtra("base64_image");
+        Bitmap downloadedImage = SketchActivity.decodeBase64(base64);
+
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setImageBitmap(downloadedImage);
 
         Button nextButton = (Button) this.findViewById(R.id.next_button_text2);
         nextButton.setOnClickListener(new View.OnClickListener() {

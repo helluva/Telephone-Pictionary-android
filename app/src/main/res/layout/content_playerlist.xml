@@ -4,18 +4,18 @@
     android:layout_height="match_parent"
     android:id="@+id/playerlist_layout">
 
-    <TextView
-        android:text="Players (Session Name)"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:padding="15dp"
-        android:textSize="24sp" />
-
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.helluva.telephone_pictionary_android.PlayerlistFragment"
         android:id="@+id/playerlist_fragment" />
+
+    <Button
+android:text="Start Game"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/start_game_button"
+android:layout_marginLeft="20dp"
+android:layout_marginRight="20dp" />
 
 </LinearLayout>

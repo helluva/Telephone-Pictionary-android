@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class PlayerlistActivity extends AppCompatActivity {
 
     ArrayList<String> content = new ArrayList<>();
-    GameSession session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,36 +28,25 @@ public class PlayerlistActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //pull session from intent
-        this.session = (GameSession) this.getIntent().getSerializableExtra("gameSession");
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference reference = database.getReference(session.firebaseSessionKey());
-
-        reference.addValueEventListener(new ValueEventListener() {
+        ((ApplicationState)getApplicationContext()).registerListenerForNodeMethod("playersInLobby", "playerlistListener", new ApplicationState.NodeCallback() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void receivedString(String message) {
 
-                PlayerlistActivity.this.session = (GameSession) dataSnapshot.getValue(GameSession.class);
-
+                String[] players = message.split(",");
                 content.removeAll(content);
-                for (Player p : PlayerlistActivity.this.session.players) {
-                    content.add(p.username);
+                for (String playerName : players) {
+                    content.add(playerName);
                 }
 
                 PlayerlistFragment fragment = (PlayerlistFragment) PlayerlistActivity.this.getFragmentManager().findFragmentById(R.id.playerlist_fragment);
                 if (fragment == null) {
-                    reference.removeEventListener(this);
+                    ((ApplicationState)getApplicationContext()).unregisterListenerNamed("playerlistListener");
                 } else {
                     fragment.adapter.notifyDataSetChanged();
                 }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
             }
         });
+
     }
 
 }

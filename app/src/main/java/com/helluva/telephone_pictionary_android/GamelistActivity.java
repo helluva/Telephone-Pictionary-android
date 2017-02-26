@@ -32,33 +32,22 @@ public class GamelistActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference reference = database.getReference(GameSession.FB_SESSIONS_KEY);
-
-        reference.addValueEventListener(new ValueEventListener() {
+        ((ApplicationState)getApplicationContext()).makeRequest("requestListOfGames", new ApplicationState.NodeCallback() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void receivedString(String message) {
 
-                GenericTypeIndicator<ArrayList<String>> type = new GenericTypeIndicator<ArrayList<String>>() { };
-                ArrayList<String> sessions = dataSnapshot.getValue(type);
-                if (sessions == null) {
-                    sessions = new ArrayList<>();
+                String[] games = message.split(";");
+
+                content.removeAll(content);
+                for (String game : games) {
+                    content.add(game);
                 }
-
-                GamelistActivity.this.content.removeAll(content);
-                GamelistActivity.this.content.addAll(sessions);
 
                 GamelistFragment fragment = (GamelistFragment) GamelistActivity.this.getFragmentManager().findFragmentById(R.id.gamelist_fragment);
-                if (fragment == null) {
-                    reference.removeEventListener(this);
-                } else {
+                if (fragment != null) {
                     fragment.adapter.notifyDataSetChanged();
                 }
-
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) { }
         });
     }
 
@@ -99,31 +88,12 @@ public class GamelistActivity extends AppCompatActivity {
 
     }
 
-    public void joinSession(String sessionName, final String playerName) {
+    public void joinSession(String sessionId, final String playerName) {
+        String joinGameMessage = "joinGame:" + playerName + "," + sessionId;
+        ((ApplicationState)getApplicationContext()).sendMessage(joinGameMessage);
 
-        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        final DatabaseReference sessionRef = firebase.getReference(sessionName);
-
-        sessionRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                GameSession session = dataSnapshot.getValue(GameSession.class);
-
-                Player newPlayer = new Player(playerName);
-                session.players.add(newPlayer);
-
-                sessionRef.setValue(session);
-
-                //view playerlist
-                Intent playerlist = new Intent(GamelistActivity.this, PlayerlistActivity.class);
-                playerlist.putExtra("gameSession", session);
-                GamelistActivity.this.startActivity(playerlist);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) { }
-        });
-
+        Intent playerlistIntent = new Intent(this, PlayerlistActivity.class);
+        this.startActivity(playerlistIntent);
     }
 
 }

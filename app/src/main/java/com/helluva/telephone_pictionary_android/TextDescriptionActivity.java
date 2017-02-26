@@ -32,21 +32,16 @@ public class TextDescriptionActivity extends AppCompatActivity {
                 String description = textDescription.getText().toString();
 
                 String captionMessage = "provideCaption:" + description;
-                ((ApplicationState)getApplicationContext()).sendMessage(captionMessage);
+                ((ApplicationState) getApplicationContext()).sendMessage(captionMessage);
 
                 Intent i = new Intent(TextDescriptionActivity.this, WaitActivity.class);
                 TextDescriptionActivity.this.startActivity(i);
             }
-            /*InputMethodManager inputManager = (InputMethodManager)
-                    getSystemService(TextDescriptionActivity.INPUT_METHOD_SERVICE);
-
-            inputManager.hideSoftInputFromWindow((null ==
-            getCurrentFocus()) ? null : getCurrentFocus().getWindowToken(),
-            InputMethodManager.HIDE_NOT_ALWAYS);*/
         });
 
-        // Set a key listener callback so that users can search by pressing "Enter"
-        nextButton.setOnKeyListener(new View.OnKeyListener() {
+        // Set a key listener callback so that someone can submit a description with the "enter" key
+        EditText textDescription = (EditText) findViewById(R.id.description_field);
+        textDescription.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if( keyCode == KeyEvent.KEYCODE_ENTER ) {
@@ -65,7 +60,6 @@ public class TextDescriptionActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     @Override

@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 public class HostGameActivity extends AppCompatActivity {
 
+    private String gameName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class HostGameActivity extends AppCompatActivity {
                 String playerName = player.getText().toString();
 
                 EditText game = (EditText) findViewById(R.id.game_name);
-                String gameName = game.getText().toString();
+                gameName = game.getText().toString();
 
                 hostGame(playerName, gameName);
             }
@@ -75,6 +77,7 @@ public class HostGameActivity extends AppCompatActivity {
 
         Intent intent = new Intent(HostGameActivity.this, PlayerlistActivity.class);
         intent.putExtra("playerIsHost", true);
+        intent.putExtra("game_name", gameName);
         this.startActivity(intent);
 
     }

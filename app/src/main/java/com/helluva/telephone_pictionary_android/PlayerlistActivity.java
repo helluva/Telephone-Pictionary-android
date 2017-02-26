@@ -34,8 +34,12 @@ public class PlayerlistActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //load players
+        String gameName = getIntent().getStringExtra("game_name");
 
+//        TextView playerTitle = (TextView) this.findViewById(R.id.players_title);
+//        playerTitle.setText("Players in \"" + gameName + "\"");
+
+        //load players
         ((ApplicationState)getApplicationContext()).registerListenerForNodeMethod("playersInLobby", "playerlistListener", new ApplicationState.NodeCallback() {
             @Override
             public void receivedString(final String message) {
@@ -68,14 +72,15 @@ public class PlayerlistActivity extends AppCompatActivity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.playerlist_layout);
 
         boolean playerIsHost = getIntent().getBooleanExtra("playerIsHost", false);
-        if (playerIsHost) {
-            final Button startGame = new Button(this);
-            startGame.setText("Start Game");
-            startGame.setLayoutParams(new Toolbar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            startGame.setPadding(10,10,10,10);
-            layout.addView(startGame);
 
-            startGame.setOnClickListener(new View.OnClickListener() {
+        Button startGameButton = (Button) this.findViewById(R.id.start_game_button);
+
+        if (playerIsHost) {
+            startGameButton.setVisibility(View.VISIBLE);
+
+//            layout.addView(startGame);
+
+            startGameButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ((ApplicationState)getApplicationContext()).sendMessage("startGame");
@@ -83,6 +88,7 @@ public class PlayerlistActivity extends AppCompatActivity {
             });
 
         } else {
+            startGameButton.setVisibility(View.INVISIBLE);
             TextView waitingText = new TextView(this);
             waitingText.setText("Waiting for host to start game...");
             waitingText.setLayoutParams(new Toolbar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));

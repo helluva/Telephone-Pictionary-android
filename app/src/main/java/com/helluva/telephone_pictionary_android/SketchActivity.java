@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-//<<<<<<< Updated upstream
+//<<<<<<< Updated upstreamc
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -54,19 +55,23 @@ public class SketchActivity extends AppCompatActivity {
                 SketchActivity.this.startActivity(i);
             }
         });
-/*
-        Button redButton = (Button) this.findViewById(R.id.red_button);
+
+
+
+
+       /* Button redButton = (Button) this.findViewById(R.id.red_button);
         redButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+        //redButton.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0xFFAA0000));
         redButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                FabricView canvas = (FabricView) findViewById(R.id.faricView);
+                FabricView canvas = (FabricView) findViewById(R.id.fabricView);
                 canvas.setColor(Color.RED);
             }
 
         });
-*/
+        */
         Spinner colorSpinner = (Spinner) findViewById(R.id.color_spinner);
 
         //for the new spinner
@@ -74,17 +79,18 @@ public class SketchActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         colorSpinner.setAdapter(adapter);
 
-
-
-        /* colorSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Colors newColor = Colors.values()[position];
-                FabricView canvas = (FabricView) findViewById(R.id.faricView);
+                FabricView canvas = (FabricView) findViewById(R.id.fabricView);
                 canvas.setColor(newColor.getColor());
-                //colorSpinner.setSelection(canvas.setColor(newColor);
             }
-        }); */
+
+             @Override
+             public void onNothingSelected(AdapterView<?> parent) {
+             }
+         });
     }
 
     public static Bitmap getBitmapFromView(View view) {

@@ -12,7 +12,7 @@ public enum Colors {
     RED("Red", Color.RED),
     GREY("Grey", Color.GRAY);
 
-    
+
     private final String selectedColorName;
     private final int selectedColor;
 

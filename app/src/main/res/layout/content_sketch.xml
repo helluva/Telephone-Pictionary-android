@@ -30,22 +30,14 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp" />
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> origin/master
 
-    <TextView
-        android:text="  Colors"
-        android:textColor="#000"
-        android:textStyle="bold"
+    <com.agsw.FabricView.FabricView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/color_text_label"
-        android:layout_marginStart="23dp"
+        android:id="@+id/fabricView"
         android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/color_size_label" />
-
+        android:layout_below="@+id/description_text_view"
+        android:layout_marginBottom="60dp"/>
 
     <Button
         android:text="Done"
@@ -54,51 +46,28 @@
         android:id="@+id/next_button_sketch"
         android:layout_marginRight="0dp"
         android:layout_marginLeft="230dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="11dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <com.agsw.FabricView.FabricView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fabricView"
-        android:layout_alignParentStart="true"
-<<<<<<< HEAD
-        android:layout_above="@+id/color_spinner"
-        android:layout_below="@+id/description_text_view" />
-=======
->>>>>>> origin/master
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/color_spinner"
-        android:layout_gravity="bottom|left"
-        android:spinnerMode="dropdown"
-        android:drawSelectorOnTop="true"
-        android:layout_alignTop="@+id/next_button_sketch"
-        android:layout_alignStart="@+id/color_text_label" />
+        android:layout_alignTop="@+id/size_spinner"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="35dp">
 
-    <TextView
-        android:text="Sizes"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/color_size_label"
-        android:layout_marginEnd="39dp"
-        android:layout_alignBottom="@+id/next_button_sketch"
-        android:layout_alignParentEnd="true" />
+    </Spinner>
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/size_spinner"
-        android:layout_gravity="bottom|right"
-        android:spinnerMode="dropdown"
-        android:drawSelectorOnTop="true"
         android:layout_alignTop="@+id/next_button_sketch"
-        android:layout_alignEnd="@+id/color_size_label" />
+        android:layout_centerHorizontal="true">
+    </Spinner>
 
 </RelativeLayout>
 

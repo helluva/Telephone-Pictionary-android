@@ -3,16 +3,20 @@ package com.helluva.telephone_pictionary_android;
 import android.graphics.Color;
 
 public enum Colors {
-    BLACK(Color.BLACK),
-    RED(Color.RED),
-    GREEN(Color.GREEN),
-    BLUE(Color.BLUE);
+    BLACK("Black"),
+    RED("Red"),
+    GREEN("Green"),
+    BLUE("Blue");
 
     //may need to make public????
-    private final int selectedColor;
+    private final String selectedColor;
 
-    Colors(int selectedColor) {
+    Colors(String selectedColor) {
         this.selectedColor = selectedColor;
+    }
+
+    public String toString() {
+        return selectedColor;
     }
 
 }

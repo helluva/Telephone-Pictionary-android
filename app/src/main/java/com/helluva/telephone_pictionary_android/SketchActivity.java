@@ -13,19 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-//<<<<<<< Updated upstreamc
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.agsw.FabricView.FabricView;
-//=======
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-//>>>>>>> Stashed changes
 
 public class SketchActivity extends AppCompatActivity {
 

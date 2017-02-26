@@ -37,7 +37,12 @@ public class WaitActivity extends AppCompatActivity {
         ((ApplicationState)getApplicationContext()).registerListenerForNodeMethod("nextImage", "waitingForImage", new ApplicationState.NodeCallback() {
             @Override
             public void receivedString(String message) {
-                System.out.println("LOADED IMAGE!!!!!");
+                Intent nextRound = new Intent(WaitActivity.this, TextWithSketchActivity.class);
+
+                System.out.println("base64: " + message);
+
+                nextRound.putExtra("base64_image", message.trim());
+                WaitActivity.this.startActivity(nextRound);
             }
         });
 

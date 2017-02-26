@@ -53,14 +53,13 @@ public class SketchActivity extends AppCompatActivity {
 
                 FabricView canvas = (FabricView) findViewById(R.id.fabricView);
                 Bitmap image = canvas.getCanvasBitmap();
-                String base64String = SketchActivity.encodeToBase64(image, Bitmap.CompressFormat.PNG, 100);
+                String base64String = SketchActivity.encodeToBase64(image, Bitmap.CompressFormat.JPEG, 80);
 
-                System.out.println(base64String);
+                String imageMessage = "provideImage:" + base64String;
+                ((ApplicationState)getApplicationContext()).sendMessage(imageMessage);
+
 
                 Intent i = new Intent(SketchActivity.this, WaitActivity.class);
-
-
-
                 SketchActivity.this.startActivity(i);
             }
         });
@@ -167,12 +166,12 @@ public class SketchActivity extends AppCompatActivity {
     {
         ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
         image.compress(compressFormat, quality, byteArrayOS);
-        return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.DEFAULT);
+        return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.URL_SAFE | Base64.NO_WRAP);
     }
 
     public static Bitmap decodeBase64(String input)
     {
-        byte[] decodedBytes = Base64.decode(input, 0);
+        byte[] decodedBytes = Base64.decode(input, Base64.URL_SAFE | Base64.NO_WRAP);
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 

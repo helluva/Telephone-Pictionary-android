@@ -1,12 +1,14 @@
 package com.helluva.telephone_pictionary_android;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.StrictMode;
-
-import org.w3c.dom.Node;
+import android.support.annotation.NonNull;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -105,7 +107,7 @@ public class ApplicationState extends Application {
 
         long time = new java.util.Date().getTime();
         String messageId = "" + time;
-        String messageWithId = messageId + "/" + message;
+        String messageWithId = messageId + "/" + message + "\r\n";
 
         System.out.println("Send message: " + messageWithId);
 

@@ -48,7 +48,8 @@
         <activity
             android:name=".SketchActivity"
             android:label="Sketch the description"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -78,7 +79,8 @@
         <activity
             android:name=".PlayerlistActivity"
             android:label="Players"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".HostGameActivity"

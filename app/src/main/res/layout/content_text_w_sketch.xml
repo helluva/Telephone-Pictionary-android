@@ -10,6 +10,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/description_field"
+        android:hint="description"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp" />
 

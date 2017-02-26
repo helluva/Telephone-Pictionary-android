@@ -10,14 +10,6 @@
     <!--tools:context="com.helluva.telephone_pictionary_android.MainActivity"-->
     <!--tools:showIn="@layout/activity_sketch">-->
 
-    <com.agsw.FabricView.FabricView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:id="@+id/faricView"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
-
     <!--<Button-->
         <!--android:text="Red"-->
         <!--android:layout_width="59dp"-->
@@ -54,8 +46,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fabricView"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/color_spinner" />
+
+    <TextView
+        android:text="  Sizes"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/color_size_label"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignEnd="@+id/size_spinner"
+        android:layout_alignStart="@+id/size_spinner" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -64,10 +68,31 @@
         android:layout_gravity="bottom|left"
         android:spinnerMode="dropdown"
         android:drawSelectorOnTop="true"
-        android:layout_marginBottom="25dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginStart="29dp"
+        android:layout_above="@+id/color_text_label"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="29dp" />
+        android:layout_marginBottom="11dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/size_spinner"
+        android:layout_gravity="bottom|right"
+        android:drawSelectorOnTop="true"
+        android:layout_alignTop="@+id/color_spinner"
+        android:layout_alignStart="@+id/next_button_sketch" />
+
+    <TextView
+        android:text="  Colors"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/color_text_label"
+        android:layout_alignBaseline="@+id/color_size_label"
+        android:layout_alignBottom="@+id/color_size_label"
+        android:layout_alignStart="@+id/color_spinner" />
+
 
 </RelativeLayout>
 

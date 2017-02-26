@@ -58,7 +58,7 @@ public class SketchActivity extends AppCompatActivity {
 
 
 
-
+//OLD BUTTON WITH RED BACKGROUND STUFF
        /* Button redButton = (Button) this.findViewById(R.id.red_button);
         redButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
         //redButton.getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0xFFAA0000));
@@ -72,6 +72,8 @@ public class SketchActivity extends AppCompatActivity {
 
         });
         */
+
+        //COLOR SPINNER IMPLEMENTATION
         Spinner colorSpinner = (Spinner) findViewById(R.id.color_spinner);
 
         //for the new spinner
@@ -91,6 +93,29 @@ public class SketchActivity extends AppCompatActivity {
              public void onNothingSelected(AdapterView<?> parent) {
              }
          });
+
+
+
+        //SIZES SPINNER IMPLEMENTATION
+        Spinner sizeSpinner = (Spinner) findViewById(R.id.size_spinner);
+
+        //for the new spinner
+        ArrayAdapter<Sizes> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Sizes.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sizeSpinner.setAdapter(adapter2);
+
+        sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Sizes newSize = Sizes.values()[position];
+                FabricView canvas = (FabricView) findViewById(R.id.fabricView);
+                canvas.setSize(newSize.getSize());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     public static Bitmap getBitmapFromView(View view) {

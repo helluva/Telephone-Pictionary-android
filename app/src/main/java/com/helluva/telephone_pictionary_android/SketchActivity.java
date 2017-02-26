@@ -1,16 +1,19 @@
 package com.helluva.telephone_pictionary_android;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.content.Intent;
+
+import com.agsw.FabricView.FabricView;
 
 public class SketchActivity extends AppCompatActivity {
 
@@ -26,16 +29,26 @@ public class SketchActivity extends AppCompatActivity {
 
         Intent i = getIntent();
 
-
 /*
+        Button redButton = (Button) this.findViewById(R.id.red_button);
+        redButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+        redButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                FabricView canvas = (FabricView) findViewById(R.id.faricView);
+                canvas.setColor(Color.RED);
+            }
+
+        });
+*/
         Spinner spinner = (Spinner) findViewById(R.id.color_spinner);
         //spinner.setOnItemSelectedListener(this);
 
         //for the new spinner
-        ColorSpinnerAdapter<Colors> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Colors.values());
+        ArrayAdapter<Colors> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Colors.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         colorSpinner.setAdapter(adapter);
-        */
     }
 
     @Override

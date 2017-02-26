@@ -46,25 +46,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-        Button sketchButton = (Button) this.findViewById(R.id.sketch_button);
-        sketchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, SketchActivity.class);
-                MainActivity.this.startActivity(i);
-            }
-        });
-
-        Button startButton = (Button) this.findViewById(R.id.start_game_button);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, TextDescriptionActivity.class);
-                MainActivity.this.startActivity(i);
-            }
-        });
-
     }
 
     @Override

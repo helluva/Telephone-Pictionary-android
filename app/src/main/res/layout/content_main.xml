@@ -13,24 +13,6 @@
     tools:context="com.helluva.telephone_pictionary_android.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
-        android:text="Sketch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sketch_button"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/start_game_button"
-        android:layout_marginEnd="46dp" />
-
-    <Button
-        android:text="Start Game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_game_button"
-        android:layout_marginEnd="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="Create a new game that your friends can join"
         android:layout_width="wrap_content"

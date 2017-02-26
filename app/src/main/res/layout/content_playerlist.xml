@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/playerlist_layout">
 
@@ -8,14 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.helluva.telephone_pictionary_android.PlayerlistFragment"
-        android:id="@+id/playerlist_fragment" />
+        android:id="@+id/playerlist_fragment"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp" />
 
     <Button
-android:text="Start Game"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:id="@+id/start_game_button"
-android:layout_marginLeft="20dp"
-android:layout_marginRight="20dp" />
+        android:text="Start Game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_game_button"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
 
 </LinearLayout>

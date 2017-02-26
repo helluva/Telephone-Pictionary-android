@@ -26,11 +26,18 @@ public class PlayerlistActivity extends AppCompatActivity {
         setContentView(R.layout.activity_playerlist);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PlayerlistActivity.this, HostGameActivity.class);
+                PlayerlistActivity.this.startActivity(i);
+            }
+        });
 
         String gameName = getIntent().getStringExtra("game_name");
-
-//        TextView playerTitle = (TextView) this.findViewById(R.id.players_title);
-//        playerTitle.setText("Players in \"" + gameName + "\"");
 
         //load players
         ((ApplicationState)getApplicationContext()).registerListenerForNodeMethod("playersInLobby", "playerlistListener", new ApplicationState.NodeCallback() {

@@ -1,6 +1,7 @@
 package com.helluva.telephone_pictionary_android;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         if (appState.outputStream == null) {
             appState.spinUpSocket();
         }
-
-
 
         //set up the activity
         super.onCreate(savedInstanceState);

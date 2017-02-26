@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.helluva.telephone_pictionary_android.GamelistActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.helluva.telephone_pictionary_android.GamelistActivity"
+    android:orientation="vertical">
 
-    <include
-        android:layout_width="wrap_content"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/content_gamelist" />
-</android.support.design.widget.CoordinatorLayout>
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/app_bar_layout">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_gamelist" />
+
+</LinearLayout>

@@ -10,7 +10,9 @@
         android:name="com.helluva.telephone_pictionary_android.GamelistFragment"
         android:id="@+id/gamelist_fragment"
         android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:text="Active Games"

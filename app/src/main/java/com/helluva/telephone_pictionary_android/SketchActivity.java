@@ -29,10 +29,6 @@ import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
 
 public class SketchActivity extends AppCompatActivity {
-
-
-    private Spinner colorSpinner;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +42,7 @@ public class SketchActivity extends AppCompatActivity {
         TextView textDescription = (TextView) this.findViewById(R.id.description_text_view);
         textDescription.setText(description);
 
-        Button nextButton = (Button) this.findViewById(R.id.next_button_sketch);
+        /*Button nextButton = (Button) this.findViewById(R.id.next_button_sketch);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +58,7 @@ public class SketchActivity extends AppCompatActivity {
                 Intent i = new Intent(SketchActivity.this, WaitActivity.class);
                 SketchActivity.this.startActivity(i);
             }
-        });
+        });*/
 
 
 
@@ -85,8 +81,8 @@ public class SketchActivity extends AppCompatActivity {
         Spinner colorSpinner = (Spinner) findViewById(R.id.color_spinner);
 
         //for the new spinner
-        ArrayAdapter<Colors> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Colors.values());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<Colors> adapter = new ArrayAdapter(this,R.layout.spinner_size_item, Colors.values());
+        adapter.setDropDownViewResource(R.layout.spinner_size_item);
         colorSpinner.setAdapter(adapter);
 
          colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

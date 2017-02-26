@@ -10,7 +10,8 @@ public enum Colors {
     YELLOW("Yellow", Color.YELLOW),
     ORANGE("Orange", Color.parseColor("#FF8000")),
     RED("Red", Color.RED),
-    GREY("Grey", Color.GRAY);
+    GREY("Grey", Color.GRAY),
+    ERASER("Eraser", Color.WHITE);
 
 
     private final String selectedColorName;

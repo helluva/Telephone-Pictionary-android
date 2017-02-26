@@ -20,7 +20,7 @@
 
     <TextView
         android:text="TextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/description_text_view"
         android:textSize="20sp"
@@ -30,16 +30,10 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp" />
 
-    <TextView
-        android:text="Sizes"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:id="@+id/color_size_label"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="11dp" />
+<<<<<<< HEAD
+    
+=======
+>>>>>>> origin/master
 
     <TextView
         android:text="  Colors"
@@ -49,29 +43,31 @@
         android:layout_height="wrap_content"
         android:id="@+id/color_text_label"
         android:layout_marginStart="23dp"
-        android:layout_alignBaseline="@+id/color_size_label"
-        android:layout_alignBottom="@+id/color_size_label"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/color_size_label" />
+
+
+    <Button
+        android:text="Done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/next_button_sketch"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="230dp"
+        android:layout_marginBottom="13dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <com.agsw.FabricView.FabricView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fabricView"
         android:layout_alignParentStart="true"
+<<<<<<< HEAD
         android:layout_above="@+id/color_spinner"
         android:layout_below="@+id/description_text_view" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/size_spinner"
-        android:layout_gravity="bottom|right"
-        android:spinnerMode="dropdown"
-        android:layout_marginTop="-10dp"
-        android:layout_marginBottom="40dp"
-        android:drawSelectorOnTop="true"
-        android:layout_below="@+id/fabricView"
-        android:layout_alignEnd="@+id/color_size_label" />
+=======
+>>>>>>> origin/master
 
     <Spinner
         android:layout_width="wrap_content"
@@ -80,10 +76,29 @@
         android:layout_gravity="bottom|left"
         android:spinnerMode="dropdown"
         android:drawSelectorOnTop="true"
-        android:layout_marginBottom="36dp"
-        android:layout_above="@+id/color_text_label"
+        android:layout_alignTop="@+id/next_button_sketch"
         android:layout_alignStart="@+id/color_text_label" />
 
+    <TextView
+        android:text="Sizes"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/color_size_label"
+        android:layout_marginEnd="39dp"
+        android:layout_alignBottom="@+id/next_button_sketch"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/size_spinner"
+        android:layout_gravity="bottom|right"
+        android:spinnerMode="dropdown"
+        android:drawSelectorOnTop="true"
+        android:layout_alignTop="@+id/next_button_sketch"
+        android:layout_alignEnd="@+id/color_size_label" />
 
 </RelativeLayout>
 

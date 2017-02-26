@@ -14,40 +14,72 @@
     tools:showIn="@layout/activity_main">
 
     <Button
-        android:text="Join Game"
+        android:text="Sketch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/host_game_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:id="@+id/join_game_button"
-        android:textStyle="bold" />
-
-    <Button
-        android:text="Host Game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="51dp"
-        android:id="@+id/host_game_button"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/join_game_button" />
+        android:id="@+id/sketch_button"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/start_game_button"
+        android:layout_marginEnd="46dp" />
 
     <Button
         android:text="Start Game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/start_game_button"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/sketch_button"
+        android:layout_marginEnd="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Create a new game that your friends can join"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_below="@+id/host_game_button"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Join an existing game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_below="@+id/join_game_button"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Sketch"
+        android:text="Host Game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sketch_button"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="96dp"
+        android:id="@+id/host_game_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:textStyle="normal|bold"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:text="Join Game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/join_game_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textAllCaps="false"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="58dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignEnd="@+id/host_game_button" />
 </RelativeLayout>
